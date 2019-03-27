@@ -32,10 +32,6 @@
                 <param name="android-package" value="com.dealrinc.gmvScanner.CDVAndroidScanner"/>
             </feature>
         </config-file>
-
-        <config-file parent="/*" target="app/src/main/AndroidManifest.xml">
-            <uses-permission android:name="android.permission.CAMERA" />
-        </config-file>
         <config-file parent="application" target="app/src/main/AndroidManifest.xml">
             <meta-data
                     android:name="com.google.android.gms.version"
@@ -47,10 +43,7 @@
             <activity android:label="@string/title_activity_main" android:name="com.dealrinc.gmvScanner.SecondaryActivity"/>
             <activity android:label="Read Barcode" android:name="com.dealrinc.gmvScanner.BarcodeCaptureActivity" android:theme="@style/Theme.AppCompat.Light"/>
         </config-file>
-
-        <config-file parent="/*" target="AndroidManifest.xml">
-            <uses-permission android:name="android.permission.CAMERA" />
-        </config-file>
+            
         <config-file parent="application" target="AndroidManifest.xml">
             <meta-data
                     android:name="com.google.android.gms.version"
@@ -59,8 +52,8 @@
                     android:name="com.google.android.gms.vision.DEPENDENCIES"
                     android:value="barcode" />
 
-            <activity android:label="@string/title_activity_main" android:name="com.dealrinc.gmvScanner.SecondaryActivity"/>
-            <activity android:label="Read Barcode" android:name="com.dealrinc.gmvScanner.BarcodeCaptureActivity" android:theme="@style/Theme.AppCompat.Light"/>
+            <activity android:label="@string/title_activity_main" android:name="com.dealrinc.gmvScanner.SecondaryActivity" android:configChanges="orientation"/>
+            <activity android:label="Read Barcode" android:name="com.dealrinc.gmvScanner.BarcodeCaptureActivity" android:theme="@style/Theme.AppCompat.Light" android:configChanges="orientation"/>
         </config-file>
 
         <config-file target="res/values/strings.xml" parent="/*">
