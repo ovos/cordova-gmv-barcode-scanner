@@ -1,3 +1,4 @@
+**This fork contains a modified version of the original barcode scanner which is suited for our needs.**
 
 cordova-gmv-barcode-scanner
 ===========================
