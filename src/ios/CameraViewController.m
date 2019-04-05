@@ -322,20 +322,12 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     
     CGFloat frameWidth = screenWidth*_scanAreaWidth;
     CGFloat frameHeight = screenHeight*_scanAreaHeight;
-    
-    UILabel* _label1 = [[UILabel alloc] init];
-    _label1.frame = CGRectMake(screenWidth/2 - frameWidth/2, screenHeight/2 - frameHeight/2, frameWidth, frameHeight);
-    _label1.layer.masksToBounds = NO;
-    _label1.layer.cornerRadius = 30;
-    _label1.userInteractionEnabled = YES;
-    _label1.layer.borderColor = [UIColor whiteColor].CGColor;
-    _label1.layer.borderWidth = 3.0;
-    UITapGestureRecognizer* tapScanner = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(focusAtPoint:)];
-    [_label1 addGestureRecognizer:tapScanner];
-
-    [self.view addSubview:_label1];
 
     UIView *catView = [[UIView alloc] initWithFrame:CGRectMake(screenWidth/2 - frameWidth/2, screenHeight/2 - frameHeight/2, frameWidth, frameHeight)];
+    catView.userInteractionEnabled = YES;
+    UITapGestureRecognizer* tapScanner = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(focusAtPoint:)];
+    [catView addGestureRecognizer:tapScanner];
+
     self.imageView.frame = catView.bounds;
     
     // add the imageview to the superview
