@@ -322,16 +322,20 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     
     CGFloat frameWidth = screenWidth*_scanAreaWidth;
     CGFloat frameHeight = screenHeight*_scanAreaHeight;
-    
-    UILabel* _label1 = [[UILabel alloc] init];
-    _label1.frame = CGRectMake(screenWidth/2 - frameWidth/2, screenHeight/2 - frameHeight/2, frameWidth, frameHeight);
-    _label1.layer.masksToBounds = NO;
-    _label1.layer.cornerRadius = 30;
-    _label1.userInteractionEnabled = YES;
-    _label1.layer.borderColor = [UIColor whiteColor].CGColor;
-    _label1.layer.borderWidth = 3.0;
+
+    UIView *catView = [[UIView alloc] initWithFrame:CGRectMake(screenWidth/2 - frameWidth/2, screenHeight/2 - frameHeight/2, frameWidth, frameHeight)];
+    catView.userInteractionEnabled = YES;
     UITapGestureRecognizer* tapScanner = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(focusAtPoint:)];
-    [_label1 addGestureRecognizer:tapScanner];
+    [catView addGestureRecognizer:tapScanner];
+
+    self.imageView.frame = catView.bounds;
+    
+    // add the imageview to the superview
+    [catView addSubview:self.imageView];
+    
+    //add the view to the main view
+    
+    [self.view addSubview:catView];
     
     CGFloat buttonSize = 45.0;
     
@@ -349,7 +353,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     [_cancelButton setImage:cancelIcon
                    forState:UIControlStateNormal];
     
-    CGFloat screenOffset = (screenWidth/2 - frameWidth/2)/2 - buttonSize/2;
+    CGFloat screenOffset = buttonSize/2;
     NSLog(@"screenOffset %f", screenOffset);
     
     _cancelButton.frame = CGRectMake(screenOffset, screenHeight-screenOffset-buttonSize, buttonSize, buttonSize);
@@ -384,20 +388,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     
     [self.view addSubview:self.torchButton];
     
-    [self.view addSubview:_label1];
-    
     self.imageView = [[UIImageView alloc] initWithImage:nil];
-    
-    UIView *catView = [[UIView alloc] initWithFrame:CGRectMake(0,0,frameWidth,frameHeight)];
-    self.imageView.frame = catView.bounds;
-    
-    // add the imageview to the superview
-    [catView addSubview:self.imageView];
-    
-    //add the view to the main view
-    
-    [self.view addSubview:catView];
-    
 }
 
 #pragma mark - Helper Functions
