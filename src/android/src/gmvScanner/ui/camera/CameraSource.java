@@ -1135,6 +1135,17 @@ public class CameraSource {
                 // idea of the timing of frames received and when frames were dropped along the way.
                 mPendingTimeMillis = SystemClock.elapsedRealtime() - mStartTimeMillis;
                 mPendingFrameId++;
+             
+
+                if (!isInverted){
+                    for (int y = 0; y < data.length; y++){
+                        data[y] = (byte) ~data[y];
+                    }
+                    isInverted = true;
+                } else {
+                    isInverted = false;
+                }
+                
                 mPendingFrameData = mBytesToByteBuffer.get(data);
 
                 // Notify the processor thread if it is waiting on the next frame (see below).
