@@ -91,6 +91,11 @@ public class CameraSource {
      */
     private static final float ASPECT_RATIO_TOLERANCE = 0.01f;
 
+    /**
+     * Will be toggled during frame processing to allow checking inverted version of frames (every second frame)
+     */
+    private boolean isInverted = false;
+
     @StringDef({
         Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE,
         Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO,
