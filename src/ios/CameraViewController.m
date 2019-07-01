@@ -36,6 +36,7 @@
 
 @end
 
+// muchas gracias to: https://stackoverflow.com/a/6672628/1856221
 @implementation UIImage (NegativeImage)
 
 - (UIImage *)negativeImage
