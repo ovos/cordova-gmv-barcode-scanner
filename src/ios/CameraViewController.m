@@ -264,10 +264,9 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     // invert image colors
     if(!_isInverted) {
         croppedImg = [croppedImg negativeImage];
-        _isInverted = true;
-    } else {
-        _isInverted = false;
     }
+    
+    _isInverted = !_isInverted;
     
     //Test code to place the resultant cropped image onto the display to verify sizing.
     /*dispatch_async(dispatch_get_main_queue(), ^{

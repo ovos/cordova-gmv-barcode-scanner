@@ -1146,10 +1146,9 @@ public class CameraSource {
                     for (int y = 0; y < data.length; y++){
                         data[y] = (byte) ~data[y];
                     }
-                    isInverted = true;
-                } else {
-                    isInverted = false;
                 }
+
+                isInverted = !isInverted;
                 
                 mPendingFrameData = mBytesToByteBuffer.get(data);
 
