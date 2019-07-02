@@ -91,6 +91,11 @@ public class CameraSource {
      */
     private static final float ASPECT_RATIO_TOLERANCE = 0.01f;
 
+    /**
+     * Will be toggled during frame processing to allow checking inverted version of frames (every second frame)
+     */
+    private boolean isInverted = false;
+
     @StringDef({
         Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE,
         Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO,
@@ -1135,6 +1140,16 @@ public class CameraSource {
                 // idea of the timing of frames received and when frames were dropped along the way.
                 mPendingTimeMillis = SystemClock.elapsedRealtime() - mStartTimeMillis;
                 mPendingFrameId++;
+             
+
+                if (!isInverted){
+                    for (int y = 0; y < data.length; y++){
+                        data[y] = (byte) ~data[y];
+                    }
+                }
+
+                isInverted = !isInverted;
+                
                 mPendingFrameData = mBytesToByteBuffer.get(data);
 
                 // Notify the processor thread if it is waiting on the next frame (see below).
